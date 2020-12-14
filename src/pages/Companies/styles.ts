@@ -29,13 +29,14 @@ export const Container = styled.div`
 `;
 
 export const CompaniesList = styled.ul`
-  li {
+  a {
     height: 213.9px;
 
     display: flex;
 
     border-radius: 4.7px;
     background-color: white;
+    text-decoration: none;
 
     margin: 44px 51px 0 50px;
     padding: 27px 253.8px 26.9px 30.6px;
