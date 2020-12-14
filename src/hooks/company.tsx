@@ -6,6 +6,7 @@ import api from '../services/api';
 interface CompanyContextData {
   loading: boolean;
   filteredCompanies: Company[];
+  getCompany(id: string): Company | undefined;
   cleanFilteredCompanies(): void;
   filterCompanies(query: string): void;
   companiesRequest(): Promise<void>;
@@ -45,14 +46,26 @@ export const CompanyProvider: React.FC = ({ children }) => {
     },
     [companies]
   );
+
   const cleanFilteredCompanies = useCallback(() => {
     setFilteredCompanies([]);
   }, []);
+
+  const getCompany = useCallback(
+    (id: string) => {
+      const filteredCompany = filteredCompanies.find(
+        (company) => company.id === parseInt(id, 10)
+      );
+      return filteredCompany;
+    },
+    [filteredCompanies]
+  );
 
   return (
     <CompanyContext.Provider
       value={{
         loading,
+        getCompany,
         cleanFilteredCompanies,
         filteredCompanies,
         filterCompanies,

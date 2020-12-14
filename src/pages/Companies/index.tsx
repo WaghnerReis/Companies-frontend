@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useCompany } from '../../hooks/company';
 
 import { Container, CompaniesList } from './styles';
@@ -48,7 +48,7 @@ const Companies: React.FC = () => {
       {filteredCompanies.length > 0 ? (
         <CompaniesList>
           {filteredCompanies.map((company) => (
-            <li key={company.id}>
+            <Link key={company.id} to={`/company/${company.id}`}>
               <img
                 src={`https://empresas.ioasys.com.br${company.photo}`}
                 alt={`Logo da ${company.enterprise_name}`}
@@ -58,7 +58,7 @@ const Companies: React.FC = () => {
                 <span>{company.enterprise_type.enterprise_type_name}</span>
                 <span>{company.country}</span>
               </div>
-            </li>
+            </Link>
           ))}
         </CompaniesList>
       ) : (
