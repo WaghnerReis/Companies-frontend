@@ -6,18 +6,30 @@ import Search from './components/Search';
 import { Container } from './styles';
 
 import LogoNav from '../../assets/images/logo-nav.png';
+import { useHeader } from '../../hooks/header';
+import { useCompany } from '../../hooks/company';
 
 const Header: React.FC = () => {
   const [showSearchComponent, setShowSearchComponent] = useState(false);
+
+  const { cleanFilteredCompanies } = useCompany();
+
+  const { setSearchingValue } = useHeader();
+  setSearchingValue(showSearchComponent);
 
   const handleSearchIconClick = useCallback(() => {
     setShowSearchComponent((prevState) => !prevState);
   }, []);
 
+  const handleOnCloseSearch = useCallback(() => {
+    handleSearchIconClick();
+    cleanFilteredCompanies();
+  }, [cleanFilteredCompanies, handleSearchIconClick]);
+
   return (
     <Container>
       {showSearchComponent ? (
-        <Search />
+        <Search onClose={handleOnCloseSearch} />
       ) : (
         <>
           <div />
