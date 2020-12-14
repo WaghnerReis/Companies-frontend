@@ -28,6 +28,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     const accessToken = localStorage.getItem('@companies:accessToken');
 
     if (uid && client && accessToken) {
+      api.defaults.headers['access-token'] = accessToken;
+      api.defaults.headers.client = client;
+      api.defaults.headers.uid = uid;
+
       return {
         uid,
         client,
@@ -54,6 +58,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       localStorage.setItem('@companies:uid', uid);
       localStorage.setItem('@companies:client', client);
       localStorage.setItem('@companies:accessToken', accessToken);
+
+      api.defaults.headers['access-token'] = accessToken;
+      api.defaults.headers.client = client;
+      api.defaults.headers.uid = uid;
 
       setData({
         uid,
