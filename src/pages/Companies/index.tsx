@@ -1,7 +1,16 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
-const Companies: React.FC = () => <h1>Companies</h1>;
+import { Header } from '../../components';
+
+const Companies: React.FC = () => (
+  <Container>
+    <Header />
+    <div>
+      <p>Clique na busca para iniciar.</p>
+    </div>
+  </Container>
+);
 
 export default Companies;

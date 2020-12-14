@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
       {loading && <Load />}
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <img src={LogoHome} alt="Ioasys logo" />
+        <img src={LogoHome} alt="Logo da Ioasys" />
 
         <strong>BEM-VINDO AO EMPRESAS</strong>
 
